@@ -1,0 +1,16 @@
+{
+  "suites": [
+    "test/*.test.html"
+  ],
+  "plugins": {
+    "local": {
+      "browsers": [
+        "chrome"
+      ]
+    },
+    "sauce": {
+      "disabled": true
+    }
+  },
+  "persistent": true
+}
