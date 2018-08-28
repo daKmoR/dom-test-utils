@@ -6,7 +6,7 @@ Modern utility libray for testing web apps and components. `dom-test-utils` work
 ### Simple fixtures
 Set up test fixtures for a piece of HTML:
 
-```
+```javascript
   import { testFixtureSync } from 'dom-test-utils';
 
   const template = `
@@ -31,7 +31,7 @@ Set up test fixtures for a piece of HTML:
 
 To avoid memory leaks, make sure to call `teardown()` after you finish testing:
 
-```
+```javascript
   const fixture = testFixtureSync('<div></div>);
   fixture.teardown();
 ```
@@ -39,7 +39,7 @@ To avoid memory leaks, make sure to call `teardown()` after you finish testing:
 ### Async fixtures
 Most frameworks or web component libraries do some kind of async/batched rendering. Creating fixtures is therefore async by default:
 
-```
+```javascript
   import { testFixture } from 'dom-test-utils';
 
   const template = `
@@ -53,20 +53,20 @@ Most frameworks or web component libraries do some kind of async/batched renderi
 `dom-test-utils` uses lit-html to render the fixtures, and therefore accepts (besides strings) any valid `lit-html` render variable:
 
 Templates:
-```
+```javascript
   const fixture = await testFixture(html`
     <div>foo</div>
   `);
 ```
 
 Dom elements:
-```
+```javascript
   const element = document.createElement('my-component');
   const fixture = await testFixture(element);
 ```
 
 Arrays:
-```
+```javascript
   const templates = [html`<div></div>`, html`<span></span>`, html`<div></div>`];
   const fixture = await testFixture(templates);
 ```
@@ -77,7 +77,7 @@ You can use `dom-test-utils` for comparing and diffing DOM trees. Trees are comp
 
 Within tests, the most convenient way is to the `assertEquals` method on the test fixture. This will throw a descriptive error when the trees are not equal:
 
-```
+```javascript
   const fixture = await createFixture(html`
     <div>foo</div>
   `);
@@ -95,7 +95,7 @@ You can use `expectEquals` for BDD naming conventions.
 
 You can also use `assertEquals()` directly:
 
-```
+```javascript
   import { assertEquals } from 'dom-test-utils';
   const fixture = await createFixture(html`
     <div>foo</div>
@@ -111,7 +111,7 @@ You can also use `assertEquals()` directly:
 
 `semanticDiff()` can also be used directly:
 
-```
+```javascript
   import { semanticDiff } from 'dom-test-utils';
 
   const leftTree = html`
@@ -123,7 +123,6 @@ You can also use `assertEquals()` directly:
 
   // Diff will be an object if there is a difference, otherwise undefined
   const diff = semanticDiff(leftTree, rightTree);
-
 ```
 
 ### Future work
