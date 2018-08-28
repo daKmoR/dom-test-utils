@@ -1,4 +1,4 @@
-import { Attribute } from 'parse5-es-module';
+import { Attribute } from '@bundled-es-modules/parse5';
 import { ASTNode, DiffedObject, isElement, isTextNode } from './types';
 
 type Diff = deepDiff.IDiff;

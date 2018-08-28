@@ -1,4 +1,4 @@
-import { parseFragment, DefaultTreeDocumentFragment } from 'parse5-es-module';
+import { parseFragment, DefaultTreeDocumentFragment } from '@bundled-es-modules/parse5';
 import { deepDiff } from '@bundled-es-modules/deep-diff';
 import { html, render } from 'lit-html/lib/lit-extended';;
 import { TemplateResult } from 'lit-html';;

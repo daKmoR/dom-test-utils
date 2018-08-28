@@ -500,6 +500,10 @@
   version "1.0.2"
   resolved "https://artifactory.ing.net/artifactory/api/npm/releases_npm_all/@bundled-es-modules/deep-diff/-/deep-diff-1.0.2.tgz#4b41f8c5971699f25517169af8a8ad8e804e942f"
 
+"@bundled-es-modules/parse5@^5.1.0":
+  version "5.1.0"
+  resolved "https://artifactory.ing.net/artifactory/api/npm/releases_npm_all/@bundled-es-modules/parse5/-/parse5-5.1.0.tgz#f28af4971e1fb1591e89ca98103f0c2d7221f0ab"
+
 "@polymer/esm-amd-loader@^1.0.0":
   version "1.0.2"
   resolved "https://artifactory.ing.net/artifactory/api/npm/releases_npm_all/@polymer/esm-amd-loader/-/esm-amd-loader-1.0.2.tgz#6a6c26bd3293ce8c02765752e5581f2a4ea7e038"
@@ -3879,10 +3883,6 @@ parse-json@^2.2.0:
 parse-passwd@^1.0.0:
   version "1.0.0"
   resolved "https://artifactory.ing.net/artifactory/api/npm/releases_npm_all/parse-passwd/-/parse-passwd-1.0.0.tgz#6d5b934a456993b23d37f40a382d6f1666a8e5c6"
-
-parse5-es-module@bundled-es-modules/parse5-es-module#develop:
-  version "0.0.1"
-  resolved "https://codeload.github.com/bundled-es-modules/parse5-es-module/tar.gz/3c26cf711fdbe3bd96297cc45ea27750b7fd9edb"
 
 parse5@^4.0.0:
   version "4.0.0"

@@ -1,0 +1,1 @@
+{"version":3,"file":"parse5.js","sourceRoot":"","sources":["parse5.ts"],"names":[],"mappings":"","sourcesContent":["declare module '@bundled-es-modules/parse5' {\n  export * from 'parse5';\n}"]}

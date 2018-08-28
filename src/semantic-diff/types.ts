@@ -1,7 +1,7 @@
 import {
   Attribute, DefaultTreeNode, DefaultTreeElement, DefaultTreeParentNode,
   DefaultTreeDocumentFragment, DefaultTreeTextNode, DefaultTreeCommentNode
-} from 'parse5-es-module';
+} from '@bundled-es-modules/parse5';
 
 export type ASTNode = DefaultTreeNode | DefaultTreeParentNode;
 export type DiffedObject = ASTNode | Attribute;

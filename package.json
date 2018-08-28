@@ -21,9 +21,8 @@
   "homepage": "https://github.com/LarsDenBakker/html-test-fixture#readme",
   "dependencies": {
     "@bundled-es-modules/deep-diff": "^1.0.2",
-    "lit-html": "^0.10.2",
-    "parse5": "^5.1.0",
-    "parse5-es-module": "bundled-es-modules/parse5-es-module#develop"
+    "@bundled-es-modules/parse5": "^5.1.0",
+    "lit-html": "^0.10.2"
   },
   "devDependencies": {
     "@types/deep-diff": "^0.0.31",
