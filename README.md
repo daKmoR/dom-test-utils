@@ -83,10 +83,10 @@ Within tests, the most convenient way is to the `assertEquals` method on the tes
   `);
 
   // will not throw
-  fixture.assertEquals('<div>foo</foo>);
+  fixture.assertEquals('<div>foo</foo>');
 
   // throws an error
-  fixture.assertEquals('<div>bar</foo>);
+  fixture.assertEquals('<div>bar</foo>');
 ```
 
 You can use `expectEquals` for BDD naming conventions.
