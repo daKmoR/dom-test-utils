@@ -32,7 +32,7 @@ Set up test fixtures for a piece of HTML:
 To avoid memory leaks, make sure to call `teardown()` after you finish testing:
 
 ```javascript
-  const fixture = testFixtureSync('<div></div>);
+  const fixture = testFixtureSync('<div></div>');
   fixture.teardown();
 ```
 
@@ -102,10 +102,10 @@ You can also use `assertEquals()` directly:
   `);
 
   // will not throw
-  fixture.assertEquals('<div>foo</foo>);
+  fixture.assertEquals('<div>foo</foo>');
 
   // throws an error
-  fixture.assertEquals('<div>bar</foo>);
+  fixture.assertEquals('<div>bar</foo>');
 ```
 
 
