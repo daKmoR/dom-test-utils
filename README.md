@@ -115,7 +115,11 @@ const b = `
 assertDOMEquals(a, b);
 ```
 
-## API
+## Workflow
+
+When building dynamic web components, you want to make sure the rendered DOM stays the way you want. Instead of writing manual queries and assertions, you can store a 'snapshot' of the rendered DOM and write tests that given a certain state of your component the dom is still the way you expect. This is similar to Jest snapshots, expect that this works for vanilla HTML / web componenets. This can be written by hand, but tooling similar to https://jestjs.io/docs/en/snapshot-testing can automate this process in the future.
+
+## API Docs
 
 ### Test fixtures
 
