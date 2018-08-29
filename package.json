@@ -2,7 +2,8 @@
   "name": "dom-test-tils",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "dom-test-utils.js",
+  "module": "dom-test-utils.js",
   "scripts": {
     "test": "npm run build && wct --skip-selenium-install --configFile wct.conf.json --npm",
     "test:debug": "npm run watch & wct --skip-selenium-install --configFile wct-debug.conf.json --npm",
