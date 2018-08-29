@@ -2,7 +2,6 @@
   "suites": [
     "test/*.test.html"
   ],
-  "persistent": true,
   "plugins": {
     "local": {
       "browsers": [

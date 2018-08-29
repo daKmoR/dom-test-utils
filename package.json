@@ -6,8 +6,8 @@
   "scripts": {
     "test": "npm run build && wct --skip-selenium-install --configFile wct.conf.json --npm",
     "test:debug": "npm run watch & wct --skip-selenium-install --configFile wct-debug.conf.json --npm",
-    "build": "tsc",
-    "watch": "tsc --watch"
+    "build": "rollup -c rollup.conf.js",
+    "watch": "rollup -c rollup.conf.js --watch"
   },
   "repository": {
     "type": "git",
@@ -20,14 +20,16 @@
   },
   "homepage": "https://github.com/LarsDenBakker/html-test-fixture#readme",
   "dependencies": {
-    "@bundled-es-modules/deep-diff": "^1.0.2",
-    "@bundled-es-modules/parse5": "^5.1.0",
-    "lit-html": "^0.10.2"
+    "@bundled-es-modules/deep-diff": "bundled-es-modules/deep-diff#^1.0.2",
+    "@bundled-es-modules/parse5": "bundled-es-modules/parse5#^5.1.0",
+    "lit-html": "^0.10.2",
+    "parse5": "^5.1.0",
+    "rollup-plugin-typescript2": "^0.17.0"
   },
   "devDependencies": {
     "@types/deep-diff": "^0.0.31",
     "@types/parse5": "^5.0.0",
-    "deep-diff": "^1.0.2",
+    "rollup": "^0.65.0",
     "typescript": "^3.0.1",
     "wct-browser-legacy": "^1.0.1",
     "web-component-tester": "^6.8.0"

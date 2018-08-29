@@ -1,5 +1,5 @@
 import { html } from 'lit-html/lib/lit-extended.js';
-import { testFixtureSync, testFixture } from '../dom-test-utils.js';
+import { testFixtureSync, testFixture, componentFixture } from '../dom-test-utils.js';
 
 export const stripLitMarkers = html => html.replace(/<!---->/g, '');
 
@@ -19,6 +19,27 @@ class ASyncEl extends HTMLElement {
 }
 
 customElements.define('async-el', ASyncEl);
+
+class MyComponentA extends HTMLElement {
+    connectedCallback() {
+      this.attachShadow({ mode: 'open' });
+      this.shadowRoot.innerHTML = `
+        <div>shadow content</div>
+      `;
+    }
+}
+
+customElements.define('my-component-a', MyComponentA);
+
+class MyComponentB extends HTMLElement {
+  connectedCallback() {
+    this.innerHTML = `
+      <div>light dom content</div>
+    `;
+  }
+}
+
+customElements.define('my-component-b', MyComponentB);
 
 suite('testFixtureSync()', () => {
   test('renders a string fixture', () => {
@@ -109,5 +130,57 @@ suite('HtmlTestFixture', () => {
     } finally {
       fixture.teardown();
     }
+  });
+});
+
+suite('component fixture', () => {
+  test('.component returns the first rendered web component', async () => {
+    const fixture = await componentFixture(html`
+      <my-component-a></my-component-a>
+      <my-component-b></my-component-b>
+    `);
+
+    assert.equal(fixture.component.localName, 'my-component-a');
+  });
+
+  test('.component returns the component by name if given', async () => {
+    const fixture = await componentFixture(html`
+      <my-component-a></my-component-a>
+      <my-component-b></my-component-b>
+    `, 'my-component-b');
+
+    assert.equal(fixture.component.localName, 'my-component-b');
+  });
+
+  test('.compareRoot returns the component shadow root if present', async () => {
+    const fixture = await componentFixture(html`
+      <my-component-a></my-component-a>
+    `);
+
+    assert.isTrue(fixture.compareRoot instanceof ShadowRoot);
+  });
+
+  test('.compareRoot returns the component if no shadow root present', async () => {
+    const fixture = await componentFixture(html`
+      <my-component-b></my-component-b>
+    `);
+
+    assert.isTrue(fixture.compareRoot instanceof MyComponentB);
+  });
+
+  test('assertEquals() compares the component shadow root if present', async () => {
+    const fixture = await componentFixture(html`
+      <my-component-a></my-component-a>
+    `);
+
+    fixture.assertEquals('<div>shadow content</div>');
+  });
+
+  test('assertEquals() compares the component light dom if no shadow root present', async () => {
+    const fixture = await componentFixture(html`
+      <my-component-b></my-component-b>
+    `);
+
+    fixture.assertEquals('<div>light dom content</div>');
   });
 });
