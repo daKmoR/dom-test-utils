@@ -22,14 +22,15 @@
   "dependencies": {
     "@bundled-es-modules/deep-diff": "bundled-es-modules/deep-diff#^1.0.2",
     "@bundled-es-modules/parse5": "bundled-es-modules/parse5#^5.1.0",
-    "lit-html": "^0.10.2",
     "parse5": "^5.1.0",
-    "rollup-plugin-typescript2": "^0.17.0"
+    "lit-html": "^0.10.2"
   },
   "devDependencies": {
     "@types/deep-diff": "^0.0.31",
     "@types/parse5": "^5.0.0",
     "rollup": "^0.65.0",
+    "rollup-plugin-typescript2": "^0.17.0",
+    "rollup-plugin-node-resolve": "^3.3.0",
     "typescript": "^3.0.1",
     "wct-browser-legacy": "^1.0.1",
     "web-component-tester": "^6.8.0"
