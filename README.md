@@ -1,6 +1,8 @@
 # DOM Test Utils
 Modern utility libray for testing web apps and components. `dom-test-utils` works with anything compatible with the browser. Web components and lit-html are first class citizens.
 
+Note: this project is still in a development phase. Based on feedback, there may be breaking changes to the API.
+
 ## Basics
 
 Set up fixtures and compare the result with what you expect:

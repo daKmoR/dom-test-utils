@@ -1,5 +1,5 @@
 {
-  "name": "html-test-fixture",
+  "name": "dom-test-tils",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -11,14 +11,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/LarsDenBakker/html-test-fixture.git"
+    "url": "git+https://github.com/LarsDenBakker/dom-test-tils.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/LarsDenBakker/html-test-fixture/issues"
+    "url": "https://github.com/LarsDenBakker/dom-test-tils/issues"
   },
-  "homepage": "https://github.com/LarsDenBakker/html-test-fixture#readme",
+  "homepage": "https://github.com/LarsDenBakker/dom-test-tils#readme",
   "dependencies": {
     "@bundled-es-modules/deep-diff": "bundled-es-modules/deep-diff#^1.0.2",
     "@bundled-es-modules/parse5": "bundled-es-modules/parse5#^5.1.0",
