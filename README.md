@@ -5,7 +5,7 @@ Note: this project is still in a development phase. Based on feedback, there may
 
 ## Basics
 
-Set up fixtures and compare the result with what you expect:
+Set up test HTML fixtures and compare the result with what you expect:
 
 ```javascript
 import { createFixture } from 'dom-test-utils';
@@ -82,8 +82,7 @@ const component = document.createElement('my-component');
 const fixture = await componentFixture(component);
 ```
 
-Compares dom trees based on semantic equality. Attribute and class order don't matter, whitespace, newlines and non-visual elements
-like styles and script are ignored. A descriptive error message is given when two dom trees are not equal.
+Compares dom trees based on semantic equality. Attribute and class order don't matter. Whitespace, newlines and non-visual elements like styles and script are ignored. A descriptive error message is printed when two dom trees are not equal.
 
 ```javascript
 import { assertDOMEquals } from 'dom-test-utils';
@@ -117,7 +116,7 @@ assertDOMEquals(a, b);
 
 ## Workflow
 
-When building dynamic web components, you want to make sure the rendered DOM stays the way you want. Instead of writing manual queries and assertions, you can store a 'snapshot' of the rendered DOM and write tests that given a certain state of your component the dom is still the way you expect. This is similar to Jest snapshots, expect that this works for vanilla HTML / web componenets. This can be written by hand, but tooling similar to https://jestjs.io/docs/en/snapshot-testing can automate this process in the future.
+When building dynamic web components, you want to make sure the rendered DOM stays the way you want. Instead of writing manual queries and assertions, you can store a 'snapshot' of the rendered DOM and write tests that given a certain state of your component the dom is still the way you expect. This is similar to Jest snapshots, expect that it works for plain HTML / web components. This can be written by hand, but tooling similar to https://jestjs.io/docs/en/snapshot-testing can automate this process in the future.
 
 ## API Docs
 
@@ -251,3 +250,4 @@ This project was heavily inspired by existing libraries. The intent is to create
 
 * https://github.com/i-like-robots/chai-html
 * https://github.com/PolymerElements/test-fixture
+* https://jestjs.io/docs/en/snapshot-testing
