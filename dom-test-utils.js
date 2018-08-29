@@ -1,5 +1,5 @@
-import { parseFragment } from '@bundled-es-modules/parse5';
-import { deepDiff } from '@bundled-es-modules/deep-diff';
+import { parseFragment } from 'bundled-parse5';
+import { deepDiff } from 'bundled-deep-diff';
 import { html, render } from 'lit-html/lib/lit-extended';
 import { TemplateResult } from 'lit-html';
 import { TemplateResult as TemplateResult$1 } from 'lit-html/lit-html';

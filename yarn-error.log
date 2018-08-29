@@ -1,19 +1,19 @@
-Arguments: 
+Arguments:
   /Users/larsdenbakker/.nvm/versions/node/v8.11.1/bin/node /Users/larsdenbakker/.nvm/versions/node/v8.11.1/bin/yarn install
 
-PATH: 
+PATH:
   /Users/larsdenbakker/.nvm/versions/node/v8.11.1/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/Cellar/maven/3.5.3/libexec/bin:/usr/local/Cellar/maven/3.5.3/libexec/bin
 
-Yarn version: 
+Yarn version:
   1.7.0
 
-Node version: 
+Node version:
   8.11.1
 
-Platform: 
+Platform:
   darwin x64
 
-Trace: 
+Trace:
   Error: https://artifactory.ing.net/artifactory/api/npm/releases_npm_all/@bundled-es-modules%2fdeep-diff: not_found
       at Request.params.callback [as _callback] (/Users/larsdenbakker/.nvm/versions/node/v8.11.1/lib/node_modules/yarn/lib/cli.js:65656:18)
       at Request.self.callback (/Users/larsdenbakker/.nvm/versions/node/v8.11.1/lib/node_modules/yarn/lib/cli.js:134675:22)
@@ -26,7 +26,7 @@ Trace:
       at Object.onceWrapper (events.js:313:30)
       at emitNone (events.js:111:20)
 
-npm manifest: 
+npm manifest:
   {
     "name": "html-test-fixture",
     "version": "1.0.0",
@@ -49,8 +49,8 @@ npm manifest:
     },
     "homepage": "https://github.com/LarsDenBakker/html-test-fixture#readme",
     "dependencies": {
-      "@bundled-es-modules/parse5": "@bundled-es-modules/parse5#master",
-      "@bundled-es-modules/deep-diff": "@bundled-es-modules/deep-diff#master",
+      "bundled-parse5": "bundled-parse5#master",
+      "bundled-deep-diff": "bundled-deep-diff#master",
       "lit-html": "^0.10.2"
     },
     "devDependencies": {
@@ -62,8 +62,8 @@ npm manifest:
     }
   }
 
-yarn manifest: 
+yarn manifest:
   No manifest
 
-Lockfile: 
+Lockfile:
   No lockfile

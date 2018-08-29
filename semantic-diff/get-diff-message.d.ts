@@ -1,5 +1,5 @@
 /// <reference types="deep-diff" />
-import { Attribute } from '@bundled-es-modules/parse5';
+import { Attribute } from 'bundled-parse5';
 import { DiffedObject } from './types';
 declare type Diff = deepDiff.IDiff;
 export declare const isAttribute: (arg: any) => arg is Attribute;

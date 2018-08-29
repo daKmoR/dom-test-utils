@@ -1,4 +1,4 @@
-import { Attribute, DefaultTreeNode, DefaultTreeElement, DefaultTreeParentNode, DefaultTreeDocumentFragment, DefaultTreeTextNode, DefaultTreeCommentNode } from '@bundled-es-modules/parse5';
+import { Attribute, DefaultTreeNode, DefaultTreeElement, DefaultTreeParentNode, DefaultTreeDocumentFragment, DefaultTreeTextNode, DefaultTreeCommentNode } from 'bundled-parse5';
 export declare type ASTNode = DefaultTreeNode | DefaultTreeParentNode;
 export declare type DiffedObject = ASTNode | Attribute;
 export declare const isNode: (arg: any) => arg is DefaultTreeNode;

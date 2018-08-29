@@ -1,4 +1,4 @@
-import { DefaultTreeNode, Attribute } from '@bundled-es-modules/parse5';
+import { DefaultTreeNode, Attribute } from 'bundled-parse5';
 import { ASTNode, isElement, isParentNode, isTextNode, isCommentNode } from './types';
 
 const filteredNodeNames = ['style', 'script', '#comment'];
