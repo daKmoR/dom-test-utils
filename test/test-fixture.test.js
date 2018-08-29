@@ -116,15 +116,15 @@ suite('HtmlTestFixture', () => {
     assert.equal(document.getElementById('testEl'), undefined);
   });
 
-  test('assertEquals() runs semantic diff assertion', (done) => {
+  test('assertDOMEquals() runs semantic diff assertion', (done) => {
     const fixture = testFixtureSync('<div>foo</div>');
 
     // should not throw
-    fixture.assertEquals('<div>foo</div>');
+    fixture.assertDOMEquals('<div>foo</div>');
 
     try {
       // should throw
-      fixture.assertEquals('<div></div>');
+      fixture.assertDOMEquals('<div></div>');
     } catch (error) {
       done();
     } finally {
@@ -147,7 +147,7 @@ suite('component fixture', () => {
     const fixture = await componentFixture(html`
       <my-component-a></my-component-a>
       <my-component-b></my-component-b>
-    `, 'my-component-b');
+    `, { componentName: 'my-component-b' });
 
     assert.equal(fixture.component.localName, 'my-component-b');
   });
@@ -168,19 +168,19 @@ suite('component fixture', () => {
     assert.isTrue(fixture.compareRoot instanceof MyComponentB);
   });
 
-  test('assertEquals() compares the component shadow root if present', async () => {
+  test('assertDOMEquals() compares the component shadow root if present', async () => {
     const fixture = await componentFixture(html`
       <my-component-a></my-component-a>
     `);
 
-    fixture.assertEquals('<div>shadow content</div>');
+    fixture.assertDOMEquals('<div>shadow content</div>');
   });
 
-  test('assertEquals() compares the component light dom if no shadow root present', async () => {
+  test('assertDOMEquals() compares the component light dom if no shadow root present', async () => {
     const fixture = await componentFixture(html`
       <my-component-b></my-component-b>
     `);
 
-    fixture.assertEquals('<div>light dom content</div>');
+    fixture.assertDOMEquals('<div>light dom content</div>');
   });
 });

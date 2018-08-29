@@ -22,7 +22,7 @@ const fixture = createFixtureSync(`
 `);
 
 // fails test with error: attribute [class="foo"] was changed to attribute [class="bar"], at: section > h1
-fixture.assertEquals(`
+fixture.assertDOMEquals(`
   <section class="foo">
     <h1 class="foo">Lorem ipsum</h1>
     <p>
@@ -45,7 +45,7 @@ const fixture = await componentFixture('<my-component></my-component>');
 console.log(fixture.component);
 
 // the fixture will compare the given HTML with the component's shadow root
-fixture.assertEquals(`
+fixture.assertDOMEquals(`
   <section class="foo">
     <h1 class="foo">Lorem ipsum</h1>
     <p>
@@ -86,10 +86,10 @@ Compares dom trees based on semantic equality. Attribute and class order don't m
 like styles and script are ignored. A descriptive error message is given when two dom trees are not equal.
 
 ```javascript
-import { assertEquals } from 'dom-test-utils';
+import { assertDOMEquals } from 'dom-test-utils';
 
 // considered equal
-assertEquals('<div>foo</div>', `
+assertDOMEquals('<div>foo</div>', `
   <div>
     foo
 </div>
@@ -112,7 +112,7 @@ const b = `
 `;
 
 // throws error: tag <div> was changed to tag <span>, at: section > div#foo > div
-assertEquals(a, b);
+assertDOMEquals(a, b);
 ```
 
 ## API
@@ -191,7 +191,7 @@ const fixture = await testFixture(templates);
 
 You can use `dom-test-utils` for comparing and diffing DOM trees. Trees are compared semantically, not literally. This means that it is lenient with differences in attribute order, whitespace, newlines etc. Only visual HTML is compared, styles and script tags are ignored.
 
-Within tests, the most convenient way is to the `assertEquals` method on the test fixture. This will throw a descriptive error when the trees are not equal:
+Within tests, the most convenient way is to the `assertDOMEquals` method on the test fixture. This will throw a descriptive error when the trees are not equal:
 
 ```javascript
 const fixture = await createFixture(html`
@@ -199,36 +199,36 @@ const fixture = await createFixture(html`
 `);
 
 // will not throw
-fixture.assertEquals('<div>foo</foo>');
+fixture.assertDOMEquals('<div>foo</foo>');
 
 // throws an error
-fixture.assertEquals('<div>bar</foo>');
+fixture.assertDOMEquals('<div>bar</foo>');
 ```
 
 You can use `expectEquals` for BDD naming conventions.
 
-`assertEquals` and `expectEquals` accepts the same input as test fixture: strings, lit templates, dom nodes etc.
+`assertDOMEquals` and `expectEquals` accepts the same input as test fixture: strings, lit templates, dom nodes etc.
 
-You can also use `assertEquals()` directly:
+You can also use `assertDOMEquals()` directly:
 
 ```javascript
-import { assertEquals } from 'dom-test-utils';
+import { assertDOMEquals } from 'dom-test-utils';
 const fixture = await createFixture(html`
   <div>foo</div>
 `);
 
 // will not throw
-fixture.assertEquals('<div>foo</foo>');
+fixture.assertDOMEquals('<div>foo</foo>');
 
 // throws an error
-fixture.assertEquals('<div>bar</foo>');
+fixture.assertDOMEquals('<div>bar</foo>');
 ```
 
 
-`semanticDiff()` can also be used directly:
+`getDOMDiff()` can also be used directly:
 
 ```javascript
-import { semanticDiff } from 'dom-test-utils';
+import { getDOMDiff } from 'dom-test-utils';
 
 const leftTree = html`
   <div>foo</div>
@@ -238,7 +238,7 @@ const rightTree = html`
 `;
 
 // Diff will be an object if there is a difference, otherwise undefined
-const diff = semanticDiff(leftTree, rightTree);
+const diff = getDOMDiff(leftTree, rightTree);
 ```
 
 ## Inspiration

@@ -1,9 +1,10 @@
-import { assertEquals } from '../semantic-diff/semantic-diff';
+import { DiffConfig, assertDOMEquals } from '../semantic-diff/semantic-diff';
 
 const isWebComponent = (node: Node) => node.localName && node.localName.includes('-');
 
 export class HTMLTestFixture extends HTMLElement {
   mode: 'html' | 'web-component' = 'html';
+  diffConfig?: DiffConfig;
   componentName?: string;
   _component?: HTMLElement;
 
@@ -52,12 +53,12 @@ export class HTMLTestFixture extends HTMLElement {
     return this;
   }
 
-  assertEquals(value: unknown) {
-    assertEquals(this.compareRoot.innerHTML, value);
+  assertDOMEquals(value: unknown) {
+    assertDOMEquals(this.compareRoot.innerHTML, value, this.diffConfig);
   }
 
-  expectEquals(value: unknown) {
-    this.assertEquals(value);
+  expectDOMEquals(value: unknown) {
+    this.assertDOMEquals(value);
   }
 }
 

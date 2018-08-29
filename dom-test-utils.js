@@ -20,8 +20,10 @@ const isElement = (arg) => arg && 'tagName' in arg;
 const isParentNode = (arg) => arg && 'childNodes' in arg;
 const isTextNode = (arg) => arg && arg.nodeName === '#text';
 
-const filteredNodeNames = ['style', 'script', '#comment'];
-const filterNode = (node) => !filteredNodeNames.includes(node.nodeName);
+const defaultIgnoresTags = ['style', 'script', '#comment'];
+function filterNode(node, ignoredTags) {
+    return !defaultIgnoresTags.includes(node.nodeName) && !ignoredTags.includes(node.nodeName);
+}
 function sortAttributes(attrs) {
     return attrs
         // Sort attributes
@@ -57,14 +59,14 @@ function normalizeWhitespace(nodes) {
         }
     });
 }
-function normalizeAST(node) {
+function normalizeAST(node, ignoredTags = []) {
     if (isElement(node)) {
         node.attrs = sortAttributes(node.attrs);
     }
     if (isParentNode(node)) {
         normalizeWhitespace(node.childNodes);
-        node.childNodes.forEach(normalizeAST);
-        node.childNodes = node.childNodes.filter(filterNode);
+        node.childNodes = node.childNodes.filter(child => filterNode(child, ignoredTags));
+        node.childNodes.forEach(child => normalizeAST(child, ignoredTags));
     }
 }
 
@@ -249,11 +251,11 @@ function asHTMLString(value) {
  * @param rightHTML the right HTML tree
  * @returns the diff result, or undefined if no diffs were found
  */
-function semanticDiff(leftHTML, rightHTML) {
+function getDOMDiff(leftHTML, rightHTML, config = {}) {
     const leftTree = parseFragment(asHTMLString(leftHTML));
     const rightTree = parseFragment(asHTMLString(rightHTML));
-    normalizeAST(leftTree);
-    normalizeAST(rightTree);
+    normalizeAST(leftTree, config.ignoredTags);
+    normalizeAST(rightTree, config.ignoredTags);
     // parentNode causes a circular reference, so ignore them.
     const ignore = (path, key) => key === 'parentNode';
     const diffs = deepDiff(leftTree, rightTree, ignore);
@@ -269,11 +271,15 @@ function semanticDiff(leftHTML, rightHTML) {
  * @param leftHTML the left HTML tree
  * @param rightHTML the right HTML tree
  */
-function assertEquals(leftHTML, rightHTML) {
-    const result = semanticDiff(leftHTML, rightHTML);
+function assertDOMEquals(leftHTML, rightHTML, config = {}) {
+    const result = getDOMDiff(leftHTML, rightHTML, config);
     if (result) {
         throw new Error(`${result.message}, at path: ${result.path}`);
     }
+}
+/** See assertDOMEquals() */
+function expectDOMEquals(leftHTML, rightHTML, config = {}) {
+    assertDOMEquals(leftHTML, rightHTML, config);
 }
 
 const waitForRender = () => new Promise((resolve) => {
@@ -329,11 +335,11 @@ class HTMLTestFixture extends HTMLElement {
         }
         return this;
     }
-    assertEquals(value) {
-        assertEquals(this.compareRoot.innerHTML, value);
+    assertDOMEquals(value) {
+        assertDOMEquals(this.compareRoot.innerHTML, value, this.diffConfig);
     }
-    expectEquals(value) {
-        this.assertEquals(value);
+    expectDOMEquals(value) {
+        this.assertDOMEquals(value);
     }
 }
 customElements.define('html-test-fixture', HTMLTestFixture);
@@ -388,10 +394,11 @@ async function testFixture(value) {
  * @param componentName the name of the component. Optional, by default the first component found is used
  * @returns a promise that resolves with the test fixture after one render cycle.
  */
-async function componentFixture(value, componentName) {
+async function componentFixture(value, config = {}) {
     const fixture = await testFixture(value);
     fixture.mode = 'web-component';
-    fixture.componentName = componentName;
+    fixture.componentName = config.componentName;
+    fixture.diffConfig = config;
     return fixture;
 }
 /**
@@ -401,11 +408,12 @@ async function componentFixture(value, componentName) {
  * @param componentName the name of the component. Optional, by default the first component found is used
  * @returns the test fixture.
  */
-function componentFixtureSync(value, componentName) {
+function componentFixtureSync(value, config = {}) {
     const fixture = testFixtureSync(value);
     fixture.mode = 'web-component';
-    fixture.componentName = componentName;
+    fixture.componentName = config.componentName;
+    fixture.diffConfig = config;
     return fixture;
 }
 
-export { semanticDiff, assertEquals, HTMLTestFixture, testFixtureSync, testFixture, componentFixture, componentFixtureSync };
+export { getDOMDiff, assertDOMEquals, expectDOMEquals, HTMLTestFixture, testFixtureSync, testFixture, componentFixture, componentFixtureSync };

@@ -1,5 +1,7 @@
+import { DiffConfig } from '../semantic-diff/semantic-diff';
 export declare class HTMLTestFixture extends HTMLElement {
     mode: 'html' | 'web-component';
+    diffConfig?: DiffConfig;
     componentName?: string;
     _component?: HTMLElement;
     teardown(): void;
@@ -12,6 +14,6 @@ export declare class HTMLTestFixture extends HTMLElement {
      * Returns the root element used for comparing / diffing
      */
     readonly compareRoot: HTMLElement | ShadowRoot;
-    assertEquals(value: unknown): void;
-    expectEquals(value: unknown): void;
+    assertDOMEquals(value: unknown): void;
+    expectDOMEquals(value: unknown): void;
 }

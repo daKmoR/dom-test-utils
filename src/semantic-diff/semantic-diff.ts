@@ -10,6 +10,10 @@ import { findDiffedObject } from './find-diffed-object';
 import { getDiffPath } from './get-diff-path';
 import { ASTNode } from './types';
 
+export interface DiffConfig {
+  ignoredTags?: string[]
+}
+
 // deep-diff types for the module is incorrect
 type Diff = deepDiff.IDiff;
 
@@ -72,12 +76,12 @@ function asHTMLString(value: unknown) {
  * @param rightHTML the right HTML tree
  * @returns the diff result, or undefined if no diffs were found
  */
-export function semanticDiff(leftHTML: any, rightHTML: any): DiffResult | undefined {
+export function getDOMDiff(leftHTML: any, rightHTML: any, config: DiffConfig = {}): DiffResult | undefined {
   const leftTree = parseFragment(asHTMLString(leftHTML)) as ASTNode;
   const rightTree = parseFragment(asHTMLString(rightHTML)) as ASTNode;
 
-  normalizeAST(leftTree);
-  normalizeAST(rightTree);
+  normalizeAST(leftTree, config.ignoredTags);
+  normalizeAST(rightTree, config.ignoredTags);
 
   // parentNode causes a circular reference, so ignore them.
   const ignore = (path: string, key: string) => key === 'parentNode'
@@ -97,10 +101,15 @@ export function semanticDiff(leftHTML: any, rightHTML: any): DiffResult | undefi
  * @param leftHTML the left HTML tree
  * @param rightHTML the right HTML tree
  */
-export function assertEquals(leftHTML: unknown, rightHTML: unknown) {
-  const result = semanticDiff(leftHTML, rightHTML);
+export function assertDOMEquals(leftHTML: unknown, rightHTML: unknown, config: DiffConfig = {}) {
+  const result = getDOMDiff(leftHTML, rightHTML, config);
 
   if (result) {
     throw new Error(`${result.message}, at path: ${result.path}`);
   }
+}
+
+/** See assertDOMEquals() */
+export function expectDOMEquals(leftHTML: unknown, rightHTML: unknown, config: DiffConfig = {}) {
+  assertDOMEquals(leftHTML, rightHTML, config);
 }

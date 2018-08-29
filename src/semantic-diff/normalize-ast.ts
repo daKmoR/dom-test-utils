@@ -1,8 +1,10 @@
 import { DefaultTreeNode, Attribute } from 'bundled-parse5';
 import { ASTNode, isElement, isParentNode, isTextNode, isCommentNode } from './types';
 
-const filteredNodeNames = ['style', 'script', '#comment'];
-const filterNode = (node: DefaultTreeNode) => !filteredNodeNames.includes(node.nodeName);
+const defaultIgnoresTags = ['style', 'script', '#comment'];
+function filterNode(node: DefaultTreeNode, ignoredTags: string[]) {
+  return !defaultIgnoresTags.includes(node.nodeName) && !ignoredTags.includes(node.nodeName);
+}
 
 function sortAttributes(attrs: Attribute[]) {
   return attrs
@@ -47,14 +49,14 @@ function normalizeWhitespace(nodes: DefaultTreeNode[]) {
   });
 }
 
-export function normalizeAST(node: ASTNode) {
+export function normalizeAST(node: ASTNode, ignoredTags: string[] = []) {
   if (isElement(node)) {
     node.attrs = sortAttributes(node.attrs)
   }
 
   if (isParentNode(node)) {
     normalizeWhitespace(node.childNodes)
-    node.childNodes.forEach(normalizeAST);
-    node.childNodes = node.childNodes.filter(filterNode);
+    node.childNodes = node.childNodes.filter(child => filterNode(child, ignoredTags));
+    node.childNodes.forEach(child => normalizeAST(child, ignoredTags));
   }
 }

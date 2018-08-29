@@ -1,5 +1,9 @@
 import { HTMLTestFixture } from './html-test-fixture';
+import { DiffConfig } from '../semantic-diff/semantic-diff';
 export { HTMLTestFixture };
+export interface TestFixtureConfig extends DiffConfig {
+    componentName?: string;
+}
 /**
  * Sets up a test fixture and renders the given value to the DOM.
  * To avoid memory leaks, call teardown() after the test finished.
@@ -30,7 +34,7 @@ export declare function testFixture(value: unknown): Promise<HTMLTestFixture>;
  * @param componentName the name of the component. Optional, by default the first component found is used
  * @returns a promise that resolves with the test fixture after one render cycle.
  */
-export declare function componentFixture(value: unknown, componentName?: string): Promise<HTMLTestFixture>;
+export declare function componentFixture(value: unknown, config?: TestFixtureConfig): Promise<HTMLTestFixture>;
 /**
  * Same as componentFixture(), but without waiting for a render.
  *
@@ -38,4 +42,4 @@ export declare function componentFixture(value: unknown, componentName?: string)
  * @param componentName the name of the component. Optional, by default the first component found is used
  * @returns the test fixture.
  */
-export declare function componentFixtureSync(value: unknown, componentName?: string): HTMLTestFixture;
+export declare function componentFixtureSync(value: unknown, config?: TestFixtureConfig): HTMLTestFixture;

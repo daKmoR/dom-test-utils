@@ -3,8 +3,13 @@ import { render, html } from 'lit-html/lib/lit-extended';
 import { unsafeHTML } from 'lit-html/lib/unsafe-html';
 import { waitForRender } from '../async-utils';
 import { HTMLTestFixture } from './html-test-fixture';
+import { DiffConfig } from '../semantic-diff/semantic-diff';
 
 export { HTMLTestFixture };
+
+export interface TestFixtureConfig extends DiffConfig {
+  componentName?: string;
+}
 
 function toLitTemplate(value: unknown) {
   if (typeof value === 'string') {
@@ -63,10 +68,11 @@ export async function testFixture(value: unknown) {
  * @param componentName the name of the component. Optional, by default the first component found is used
  * @returns a promise that resolves with the test fixture after one render cycle.
  */
-export async function componentFixture(value: unknown, componentName?: string) {
+export async function componentFixture(value: unknown, config: TestFixtureConfig = {}) {
   const fixture = await testFixture(value);
   fixture.mode = 'web-component';
-  fixture.componentName = componentName;
+  fixture.componentName = config.componentName;
+  fixture.diffConfig = config;
   return fixture;
 }
 
@@ -77,9 +83,10 @@ export async function componentFixture(value: unknown, componentName?: string) {
  * @param componentName the name of the component. Optional, by default the first component found is used
  * @returns the test fixture.
  */
-export function componentFixtureSync(value: unknown, componentName?: string) {
+export function componentFixtureSync(value: unknown, config: TestFixtureConfig = {}) {
   const fixture = testFixtureSync(value);
   fixture.mode = 'web-component';
-  fixture.componentName = componentName;
+  fixture.componentName = config.componentName;
+  fixture.diffConfig = config;
   return fixture;
 }
