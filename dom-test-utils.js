@@ -1,4 +1,4 @@
-import { parseFragment } from 'bundled-parse5';
+import { parseFragment, serialize } from 'bundled-parse5';
 import { deepDiff } from 'bundled-deep-diff';
 import { html, render } from 'lit-html/lib/lit-extended';
 import { TemplateResult } from 'lit-html';
@@ -241,6 +241,11 @@ function asHTMLString(value) {
     }
     return sanitizeHtmlString(container.innerHTML);
 }
+function getAST(value, config = {}) {
+    const ast = parseFragment(asHTMLString(value));
+    normalizeAST(ast, config.ignoredTags);
+    return ast;
+}
 /**
  * Parses two HTML trees, and generates the semantic difference between the two trees.
  * The HTML is diffed semantically, not literally. This means that changes in attribute
@@ -252,8 +257,8 @@ function asHTMLString(value) {
  * @returns the diff result, or undefined if no diffs were found
  */
 function getDOMDiff(leftHTML, rightHTML, config = {}) {
-    const leftTree = parseFragment(asHTMLString(leftHTML));
-    const rightTree = parseFragment(asHTMLString(rightHTML));
+    const leftTree = getAST(leftHTML);
+    const rightTree = getAST(rightHTML);
     normalizeAST(leftTree, config.ignoredTags);
     normalizeAST(rightTree, config.ignoredTags);
     // parentNode causes a circular reference, so ignore them.
@@ -300,6 +305,14 @@ class HTMLTestFixture extends HTMLElement {
         if (this.parentElement) {
             this.parentElement.removeChild(this);
         }
+    }
+    /**
+     * Returns the snapshot that can be used for storing the component state's snapshot,
+     * and compared against in your tests.
+     */
+    get snapshot() {
+        const ast = getAST(this.compareRoot.innerHTML);
+        return serialize(ast);
     }
     /**
      * Finds the web component set up by this test fixture. If a component name was specified, that is used.
@@ -416,4 +429,4 @@ function componentFixtureSync(value, config = {}) {
     return fixture;
 }
 
-export { getDOMDiff, assertDOMEquals, expectDOMEquals, HTMLTestFixture, testFixtureSync, testFixture, componentFixture, componentFixtureSync };
+export { getAST, getDOMDiff, assertDOMEquals, expectDOMEquals, HTMLTestFixture, testFixtureSync, testFixture, componentFixture, componentFixtureSync };

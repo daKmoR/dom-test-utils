@@ -1,3 +1,4 @@
+import { ASTNode } from './types';
 export interface DiffConfig {
     ignoredTags?: string[];
 }
@@ -5,6 +6,7 @@ interface DiffResult {
     message: string;
     path: string;
 }
+export declare function getAST(value: any, config?: DiffConfig): ASTNode;
 /**
  * Parses two HTML trees, and generates the semantic difference between the two trees.
  * The HTML is diffed semantically, not literally. This means that changes in attribute

@@ -1,4 +1,5 @@
-import { DiffConfig, assertDOMEquals } from '../semantic-diff/semantic-diff';
+import { DiffConfig, assertDOMEquals, getAST } from '../semantic-diff/semantic-diff';
+import { serialize } from 'bundled-parse5';
 
 const isWebComponent = (node: Node) => node.localName && node.localName.includes('-');
 
@@ -12,6 +13,15 @@ export class HTMLTestFixture extends HTMLElement {
     if (this.parentElement) {
       this.parentElement.removeChild(this);
     }
+  }
+
+  /**
+   * Returns the snapshot that can be used for storing the component state's snapshot,
+   * and compared against in your tests.
+   */
+  get snapshot() {
+    const ast = getAST(this.compareRoot.innerHTML);
+    return serialize(ast);
   }
 
   /**

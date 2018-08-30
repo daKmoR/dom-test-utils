@@ -6,6 +6,11 @@ export declare class HTMLTestFixture extends HTMLElement {
     _component?: HTMLElement;
     teardown(): void;
     /**
+     * Returns the snapshot that can be used for storing the component state's snapshot,
+     * and compared against in your tests.
+     */
+    readonly snapshot: string;
+    /**
      * Finds the web component set up by this test fixture. If a component name was specified, that is used.
      * Otherwise it returns the first web component it finds. Throws if none is found.
      */

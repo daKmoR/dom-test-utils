@@ -1,6 +1,6 @@
-import { parseFragment, DefaultTreeDocumentFragment } from 'bundled-parse5';
+import { parseFragment } from 'bundled-parse5';
 import { deepDiff } from 'bundled-deep-diff';
-import { html, render } from 'lit-html/lib/lit-extended';;
+import { html, render } from 'lit-html/lib/lit-extended';
 import { TemplateResult } from 'lit-html';;
 
 import { sanitizeHtmlString } from './sanitize-html-string';
@@ -66,6 +66,12 @@ function asHTMLString(value: unknown) {
   return sanitizeHtmlString(container.innerHTML);
 }
 
+export function getAST(value: any, config: DiffConfig = {}) {
+  const ast = parseFragment(asHTMLString(value)) as ASTNode;
+  normalizeAST(ast, config.ignoredTags);
+  return ast;
+}
+
 /**
  * Parses two HTML trees, and generates the semantic difference between the two trees.
  * The HTML is diffed semantically, not literally. This means that changes in attribute
@@ -77,8 +83,8 @@ function asHTMLString(value: unknown) {
  * @returns the diff result, or undefined if no diffs were found
  */
 export function getDOMDiff(leftHTML: any, rightHTML: any, config: DiffConfig = {}): DiffResult | undefined {
-  const leftTree = parseFragment(asHTMLString(leftHTML)) as ASTNode;
-  const rightTree = parseFragment(asHTMLString(rightHTML)) as ASTNode;
+  const leftTree = getAST(leftHTML);
+  const rightTree = getAST(rightHTML);
 
   normalizeAST(leftTree, config.ignoredTags);
   normalizeAST(rightTree, config.ignoredTags);

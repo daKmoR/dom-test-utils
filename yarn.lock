@@ -1513,11 +1513,11 @@ builtin-modules@^2.0.0:
   version "2.0.0"
   resolved "https://artifactory.ing.net/artifactory/api/npm/releases_npm_all/builtin-modules/-/builtin-modules-2.0.0.tgz#60b7ef5ae6546bd7deefa74b08b62a43a232648e"
 
-bundled-deep-diff@bundled-es-modules/deep-diff#^1.0.2:
+bundled-deep-diff@bundled-es-modules/deep-diff#1.0.2:
   version "1.0.2"
   resolved "https://codeload.github.com/bundled-es-modules/deep-diff/tar.gz/c26254f1bf0c864bbb76718f237cec54414250ab"
 
-bundled-parse5@bundled-es-modules/parse5#^5.1.0:
+bundled-parse5@bundled-es-modules/parse5#5.1.0:
   version "5.1.0"
   resolved "https://codeload.github.com/bundled-es-modules/parse5/tar.gz/f3ac2fc28c28c95189fe6a8e39e688d31609a198"
 
