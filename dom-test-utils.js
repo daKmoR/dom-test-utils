@@ -1,9 +1,9 @@
 import { parseFragment, serialize } from 'bundled-parse5';
 import { deepDiff } from 'bundled-deep-diff';
-import { html, render } from 'lit-html/lib/lit-extended';
-import { TemplateResult } from 'lit-html';
-import { TemplateResult as TemplateResult$1 } from 'lit-html/lit-html';
-import { unsafeHTML } from 'lit-html/lib/unsafe-html';
+import { html, render } from 'bower-lit-html/lib/lit-extended';
+import { TemplateResult } from 'bower-lit-html';
+import { TemplateResult as TemplateResult$1 } from 'bower-lit-html/lit-html';
+import { unsafeHTML } from 'bower-lit-html/lib/unsafe-html';
 
 function sanitizeHtmlString(htmlString) {
     return htmlString

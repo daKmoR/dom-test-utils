@@ -14,7 +14,7 @@
     "tests"
   ],
   "dependencies": {
-    "lit-html": "Polymer/lit-html#^0.10.2",
+    "bower-lit-html": "npm-clones-for-bower/lit-html#^0.10.2",
     "bundled-deep-diff": "bundled-es-modules/deep-diff#^1.0.2",
     "bundled-parse5": "bundled-es-modules/parse5#^5.1.0"
   }
