@@ -1,4 +1,4 @@
-import { html } from 'lit-html/lib/lit-extended.js';
+import { html } from 'lit-html';
 import { testFixtureSync, testFixture, componentFixture } from '../dom-test-utils.js';
 
 export const stripLitMarkers = html => html.replace(/<!---->/g, '');
@@ -61,7 +61,7 @@ suite('testFixtureSync()', () => {
   });
 
   test('renders a TemplateResult fixture with nested parts', () => {
-    const fixture = testFixtureSync(html`<div foo$="${'bar'}">${html`<span>foo</span>`}</div>`);
+    const fixture = testFixtureSync(html`<div foo="${'bar'}">${html`<span>foo</span>`}</div>`);
 
     const renderedHTML = stripLitMarkers(fixture.innerHTML);
     assert.equal(renderedHTML, '<div foo="bar"><span>foo</span></div>');

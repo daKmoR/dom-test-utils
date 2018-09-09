@@ -1,4 +1,4 @@
-import { html } from 'lit-html/lib/lit-extended';
+import { html } from 'lit-html';
 import { getDOMDiff, assertDOMEquals } from '../dom-test-utils.js';
 import { template } from './template.js';
 
@@ -342,7 +342,7 @@ bar
     });
 
     test('handles TemplateResult with values', () => {
-      const diff = getDOMDiff('<div foo="bar"></div>', html`<div foo$="${'baz'}"></div>`);
+      const diff = getDOMDiff('<div foo="bar"></div>', html`<div foo="${'baz'}"></div>`);
 
       expect(diff.message).to.equal('attribute [foo="bar"] was changed to attribute [foo="baz"]');
     });

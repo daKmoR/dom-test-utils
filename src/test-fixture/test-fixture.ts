@@ -1,6 +1,6 @@
-import { TemplateResult } from 'lit-html/lit-html';
-import { render, html } from 'lit-html/lib/lit-extended';
-import { unsafeHTML } from 'lit-html/lib/unsafe-html';
+import { TemplateResult } from 'lit-html';
+import { render, html } from 'lit-html';
+import { unsafeHTML } from 'lit-html/directives/unsafe-html';
 import { waitForRender } from '../async-utils';
 import { HTMLTestFixture } from './html-test-fixture';
 import { DiffConfig } from '../semantic-diff/semantic-diff';

@@ -1,7 +1,6 @@
 import { parseFragment } from 'bundled-parse5';
 import { deepDiff } from 'bundled-deep-diff';
-import { html, render } from 'lit-html/lib/lit-extended';
-import { TemplateResult } from 'lit-html';;
+import { TemplateResult, html, render } from 'lit-html';
 
 import { sanitizeHtmlString } from './sanitize-html-string';
 import { normalizeAST } from './normalize-ast';

@@ -1,9 +1,7 @@
 import { parseFragment, serialize } from 'bundled-parse5';
 import { deepDiff } from 'bundled-deep-diff';
-import { html, render } from 'bower-lit-html/lib/lit-extended';
-import { TemplateResult } from 'bower-lit-html';
-import { TemplateResult as TemplateResult$1 } from 'bower-lit-html/lit-html';
-import { unsafeHTML } from 'bower-lit-html/lib/unsafe-html';
+import { TemplateResult, html, render } from 'lit-html';
+import { unsafeHTML } from 'lit-html/directives/unsafe-html';
 
 function sanitizeHtmlString(htmlString) {
     return htmlString
@@ -361,7 +359,7 @@ function toLitTemplate(value) {
     if (typeof value === 'string') {
         return html `${unsafeHTML(value)}`;
     }
-    if (value instanceof TemplateResult$1) {
+    if (value instanceof TemplateResult) {
         return value;
     }
     // TODO: we can render anything directly without wrapping in 0.11 onwards
