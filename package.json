@@ -1,6 +1,6 @@
 {
   "name": "dom-test-utils",
-  "version": "0.0.2",
+  "version": "0.1.0",
   "description": "",
   "main": "dom-test-utils.js",
   "module": "dom-test-utils.js",
