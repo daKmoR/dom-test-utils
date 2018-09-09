@@ -1,7 +1,7 @@
 import { parseFragment, serialize } from 'bundled-parse5';
 import { deepDiff } from 'bundled-deep-diff';
 import { TemplateResult, html, render } from 'bower-lit-html';
-import { unsafeHTML } from 'lit-html/directives/unsafe-html';
+import { unsafeHTML } from 'bower-lit-html/directives/unsafe-html';
 
 function sanitizeHtmlString(htmlString) {
     return htmlString
