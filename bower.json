@@ -1,0 +1,22 @@
+{
+  "name": "dom-test-utils",
+  "version": "0.2.0",
+  "main": "dom-test-utils.js",
+  "authors": [
+    "Lars den Bakker <lars.den.bakker@ing.nl>"
+  ],
+  "license": "ISC",
+  "homepage": "https://github.com/LarsDenBakker/dom-test-utils",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bower-lit-html": "npm-clones-for-bower/lit-html#^0.10.2",
+    "bundled-deep-diff": "bundled-es-modules/deep-diff#^1.0.2",
+    "bundled-parse5": "bundled-es-modules/parse5#^5.1.0"
+  }
+}
