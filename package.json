@@ -1,6 +1,6 @@
 {
   "name": "dom-test-utils",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "",
   "main": "dom-test-utils.js",
   "module": "dom-test-utils.js",
@@ -23,8 +23,7 @@
   "dependencies": {
     "bundled-deep-diff": "bundled-es-modules/deep-diff#1.0.2",
     "bundled-parse5": "bundled-es-modules/parse5#5.1.0",
-    "parse5": "^5.1.0",
-    "lit-html": "^0.11.1"
+    "parse5": "^5.1.0"
   },
   "devDependencies": {
     "@types/deep-diff": "^0.0.31",
@@ -34,6 +33,7 @@
     "rollup-plugin-node-resolve": "^3.3.0",
     "typescript": "^3.0.1",
     "wct-browser-legacy": "^1.0.1",
-    "web-component-tester": "^6.8.0"
+    "web-component-tester": "^6.8.0",
+    "lit-html": "^0.12.0"
   }
 }
