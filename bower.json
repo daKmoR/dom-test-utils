@@ -1,6 +1,6 @@
 {
   "name": "dom-test-utils",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "main": "dom-test-utils.js",
   "authors": [
     "Lars den Bakker <lars.den.bakker@ing.nl>"
