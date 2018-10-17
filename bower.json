@@ -1,6 +1,5 @@
 {
   "name": "dom-test-utils",
-  "version": "0.3.0",
   "main": "dom-test-utils.js",
   "authors": [
     "Lars den Bakker <lars.den.bakker@ing.nl>"
@@ -15,7 +14,7 @@
     "tests"
   ],
   "dependencies": {
-    "bower-lit-html": "npm-clones-for-bower/lit-html#^0.10.2",
+    "bower-lit-html": "npm-clones-for-bower/lit-html#^0.12.0",
     "bundled-deep-diff": "bundled-es-modules/deep-diff#^1.0.2",
     "bundled-parse5": "bundled-es-modules/parse5#^5.1.0"
   }
